@@ -1,5 +1,5 @@
 # Building a Serverless Application with API Gateway, Lambda, and Cognito
-This example demonstrates how to create an AWS API Gateway REST API that routes traffic to Lambda functions that handle the requests. In this example, we set up a domain with a self-signed TLS certificate to mimic a real-world endpoint. The outputs will provide sample curl commands to verify the REST API deployment.
+This example demonstrates how to create an AWS API Gateway REST API that routes traffic to Lambda functions to handle the requests. In this example, we set up a domain with a self-signed TLS certificate to mimic a real-world endpoint. The outputs will provide sample curl commands to verify the REST API deployment.
 
 
 ## Running this Example
