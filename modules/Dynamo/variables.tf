@@ -23,10 +23,12 @@ variable "table_name" {
 variable "hash_key" {
   default = "id"
 }
-
+variable "range_key" {
+  default = "email"
+}
 variable "lsi" {
   default = [{
-    name               = "email-index"
+    name               = "email-index-lsi"
     hash_key           = "email"
     range_key          = "password"
     projection_type    = "INCLUDE"
@@ -35,7 +37,7 @@ variable "lsi" {
 }
 variable "gsi" {
   default = [{
-    name            = "email-index"
+    name            = "email-index-gsi"
     hash_key        = "email"
     range_key       = "password"
     projection_type = "ALL"
@@ -47,9 +49,9 @@ variable "billing_mode" {
   default = "PROVISIONED"
 }
 variable "read_capacity" {
-  default = 1
+  default = 5
 }
 variable "write_capacity" {
-  default = 1
+  default = 5
 }
 

@@ -14,8 +14,29 @@ provider "aws" {
 }
 
 module "dynamodb_table" {
-  source      = "./modules/Dynamo"
-  environment = var.environment
+  source         = "./modules/Dynamo"
+  environment    = var.environment
+  write_capacity = 3
+}
+
+module "lambda" {
+  source = "./modules/lambda"
+}
+
+module "acm_tsl" {
+  source      = "./modules/acm_tls"
+  domain_name = var.domain_name
+}
+
+module "api_gateway" {
+  depends_on          = [module.acm_tsl]
+  source              = "./modules/API Gateway"
+  region              = var.region
+  lambda_invoke_arn   = module.lambda.lambda_invoke_arn
+  function_name       = module.lambda.function_name
+  domain_name         = var.domain_name
+  path                = var.path
+  acm_certificate_arn = module.acm_tsl.acm_certificate_arn
 }
 
 
