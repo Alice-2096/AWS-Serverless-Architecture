@@ -16,11 +16,14 @@ provider "aws" {
 module "dynamodb_table" {
   source         = "./modules/Dynamo"
   environment    = var.environment
+  table_name     = var.table_name
   write_capacity = 3
 }
 
 module "lambda" {
-  source = "./modules/lambda"
+  source     = "./modules/lambda"
+  region     = var.region
+  table_name = var.table_name
 }
 
 module "acm_tsl" {
